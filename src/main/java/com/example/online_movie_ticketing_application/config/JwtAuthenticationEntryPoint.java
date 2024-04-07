@@ -16,8 +16,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 @Component
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, AccessDeniedHandler, Serializable {
-    private static final long serialVersionUID = -7858869558953243875L;
+public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, AccessDeniedHandler {
 
     private final ObjectMapper objectMapper;
 

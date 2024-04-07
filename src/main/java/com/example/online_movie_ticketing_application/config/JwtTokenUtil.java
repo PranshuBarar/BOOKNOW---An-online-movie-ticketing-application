@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,8 +14,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Component
-public class JwtTokenUtil implements Serializable {
-    private static final long serialVersionUID = -2550185165626007488L;
+public class JwtTokenUtil {
 
     public static final long JWT_TOKEN_VALIDITY = 2 * 60 * 60;
 
@@ -25,7 +25,7 @@ public class JwtTokenUtil implements Serializable {
     //================================================================
     //Secret key is must for retrieving any information from the token (Secret key will be provided via application.properties file)
     private Claims getAllClaimsFromToken(String token){
-        return Jwts
+        Claims claims = Jwts
                 //calling parser() method for parsing the token to get all the claims
                 .parser()
                 //secret key will be provided via application.properties file
@@ -34,6 +34,15 @@ public class JwtTokenUtil implements Serializable {
                 .parseClaimsJws(token)
                 //Finally getting the body of the claims
                 .getBody();
+
+
+        System.out.println("Hi, here we are printing the claims");
+        System.out.println(claims);
+        for(Map.Entry<String, Object> entry : claims.entrySet()){
+            System.out.println("Hi, here we are printing the claims");
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+        return claims;
     }
 
     //This is a generic method for getting all the claims from the given token

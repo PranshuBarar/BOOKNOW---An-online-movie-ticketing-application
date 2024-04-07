@@ -37,10 +37,10 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         }
         Set<GrantedAuthority> authorities = new HashSet<>();
         if(userEntity.getRole().equals(Role.USER)){
-            authorities.add(new SimpleGrantedAuthority(Role.USER.name()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + Role.USER.name()));
         }
         else if(userEntity.getRole().equals(Role.ADMIN)){
-            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.name()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + Role.ADMIN.name()));
         }
         return new CustomUserDetails(userEntity,authorities);
     }

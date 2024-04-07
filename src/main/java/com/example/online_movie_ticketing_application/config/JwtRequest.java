@@ -12,10 +12,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-public class JwtRequest implements Serializable {
+public class JwtRequest {
 
-    @Serial
-    private static final long serialVersionUID = 5926468583005150707L;
     private String userEmail;
     private String password;
 }
